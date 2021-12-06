@@ -1,4 +1,4 @@
-const cookie = process.server? require('cookie'): undefined
+const cookie = process.server? require('cookie'): ''
 
 export const state = () => ({
 	user: {
@@ -23,7 +23,7 @@ export const getters = {
 
 export const actions = {
 	async nuxtServerInit({ commit, dispatch, state }, { req, $axios }) {
-		const cookies = cookie.parse(req.headers.cookie);
+		const cookies = cookie.parse(req.headers.cookie || '');
 		if (cookies.jwtToken) {
 			//更新token
 			commit('updateToken', cookies.jwtToken)
