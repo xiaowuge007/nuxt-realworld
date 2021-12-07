@@ -10,6 +10,7 @@ const createAjax = (store) => {
 	})
 
 	ajax.interceptors.request.use(
+
 		function (request) {
 			if(store.state.token){
 				request.headers.Authorization = `Token ${store.state.token}`
@@ -22,9 +23,6 @@ const createAjax = (store) => {
 			return response
 		},
 		function (err) {
-			if(err.response && process.client){
-				alert(err.response.data)
-			}
 			if(err.response){
 				return Promise.reject(err.response.data)
 			}

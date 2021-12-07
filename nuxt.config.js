@@ -4,6 +4,14 @@ module.exports = {
 		host: '0.0.0.0',
 		port: 3000 // default: 3000
 	},
+	build: {
+		extend (config, { isClient }) {
+			// 为 客户端打包 进行扩展配置
+			if (isClient) {
+				config.devtool = 'cheap-module-eval-source-map'
+			}
+		}
+	},
 	router: {
 		linkActiveClass: 'active',
 		extendRoutes(routes, resolve) {
